@@ -68,58 +68,62 @@ function App() {
         </div>
       </div>
       <div className="grid">
-        <div className="col">
-          <Button onClick={() => { setInfoMessage(kc.authenticated ? 'Authenticated: TRUE' : 'Authenticated: FALSE') }} 
-                  className="m-1" 
-                  label='Is Authenticated' />
 
-          <Button onClick={() => { kc.login() }} 
-                  className='m-1' 
-                  label='Login' 
-                  severity="success" />
+      </div>
 
-          <Button onClick={() => { setInfoMessage(kc.token) }} 
-                  className="m-1" 
-                  label='Show Access Token' 
-                  severity="info" />
+      <div className='grid'>
+      <div className='col-1'></div>
+        <div className='col-2'>
+          <div className="col">
+            <Button onClick={() => { setInfoMessage(kc.authenticated ? 'Authenticated: TRUE' : 'Authenticated: FALSE') }}
+              className="m-1 custom-btn-style"
+              label='Is Authenticated' />
 
-          <Button onClick={() => { setInfoMessage(JSON.stringify(kc.tokenParsed)) }} 
-                  className="m-1" 
-                  label='Show Parsed Access token' 
-                  severity="info" />
+            <Button onClick={() => { kc.login() }}
+              className='m-1 custom-btn-style'
+              label='Login'
+              severity="success" />
 
-          <Button onClick={() => { setInfoMessage(kc.isTokenExpired(5).toString()) }} 
-                  className="m-1" 
-                  label='Check Token expired' 
-                  severity="warning" />
+            <Button onClick={() => { setInfoMessage(kc.token) }}
+              className="m-1 custom-btn-style"
+              label='Show Access Token'
+              severity="info" />
 
-          <Button onClick={() => { kc.updateToken(10).then((refreshed) => { setInfoMessage('Token Refreshed: ' + refreshed.toString()) }, (e) => { setInfoMessage('Refresh Error') }) }} 
-                  className="m-1" 
-                  label='Update Token (if about to expire)' />  {/** 10 seconds */}
+            <Button onClick={() => { setInfoMessage(JSON.stringify(kc.tokenParsed)) }}
+              className="m-1 custom-btn-style"
+              label='Show Parsed Access token'
+              severity="warning" />
+
+            <Button onClick={() => { setInfoMessage(kc.isTokenExpired(5).toString()) }}
+              className="m-1 custom-btn-style"
+              label='Check Token expired'
+              severity="info" />
+
+            <Button onClick={() => { kc.updateToken(10).then((refreshed) => { setInfoMessage('Token Refreshed: ' + refreshed.toString()) }, (e) => { setInfoMessage('Refresh Error') }) }}
+              className="m-1 custom-btn-style"
+              label='Update Token (if about to expire)' />  {/** 10 seconds */}
+
+<Button onClick={callBackend} 
+              className='m-1 custom-btn-style' 
+              label='Send HTTP Request' 
+              severity="success" />
+
+            <Button onClick={() => { kc.logout({ redirectUri: 'http://localhost:3000/' }) }}
+              className="m-1 custom-btn-style"
+              label='Logout'
+              severity="danger" />
+
+          </div>
+        </div>
+        <div className='col-6'>
           
-          <Button onClick={() => { kc.logout({ redirectUri: 'http://localhost:3000/' }) }} 
-                  className="m-1" 
-                  label='Logout' 
-                  severity="danger" />
-
-        </div>
-      </div>
-      <div className='grid'>
-        <div className="col">
-          <Button onClick={callBackend} className='m-1' label='Send HTTP Request' severity="success" />
-        </div>
-      </div>
-
-      <div className='grid'>
-        <div className='col-2'></div>
-        <div className='col-8'>
-          <h3>Info Pane</h3>
           <Card>
             <p style={{ wordBreak: 'break-all' }} id='infoPanel'>
               {infoMessage}
             </p>
           </Card>
         </div>
+
         <div className='col-2'></div>
       </div>
 

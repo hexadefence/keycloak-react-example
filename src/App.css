@@ -44,6 +44,12 @@
   color: #61dafb;
 }
 
+.custom-btn-style {
+  width: 200px;
+  height: 70px;;
+  border-radius: 0px !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
