@@ -22,8 +22,8 @@ let kc = new Keycloak(initOptions);
 
 kc.init({
   onLoad: 'login-required', // Supported values: 'check-sso' , 'login-required'
-  KeycloakResponseType: 'code',
-  silentCheckSsoRedirectUri: window.location.origin + "/silent-check-sso.html", checkLoginIframe: false,
+  silentCheckSsoRedirectUri: window.location.origin + "/silent-check-sso.html", 
+  checkLoginIframe: true,
   pkceMethod: 'S256'
 }).then((auth) => {
   if (!auth) {
@@ -61,10 +61,7 @@ function App() {
     <div className="App">
       <div className='grid'>
         <div className='col-12'>
-          <h1>My Awesome React App</h1>
-        </div>
-        <div className='col-12'>
-          <h1 id='app-header-2'>Secured with Keycloak</h1>
+          <h1>My Secured React App</h1>
         </div>
       </div>
       <div className="grid">
@@ -72,7 +69,7 @@ function App() {
       </div>
 
       <div className='grid'>
-      <div className='col-1'></div>
+        <div className='col-1'></div>
         <div className='col-2'>
           <div className="col">
             <Button onClick={() => { setInfoMessage(kc.authenticated ? 'Authenticated: TRUE' : 'Authenticated: FALSE') }}
@@ -103,9 +100,9 @@ function App() {
               className="m-1 custom-btn-style"
               label='Update Token (if about to expire)' />  {/** 10 seconds */}
 
-<Button onClick={callBackend} 
-              className='m-1 custom-btn-style' 
-              label='Send HTTP Request' 
+            <Button onClick={callBackend}
+              className='m-1 custom-btn-style'
+              label='Send HTTP Request'
               severity="success" />
 
             <Button onClick={() => { kc.logout({ redirectUri: 'http://localhost:3000/' }) }}
@@ -113,10 +110,15 @@ function App() {
               label='Logout'
               severity="danger" />
 
+            <Button onClick={() => { setInfoMessage(kc.hasRealmRole('admin').toString()) }}
+              className="m-1 custom-btn-style"
+              label='is Admin'
+              severity="info" />
+
           </div>
         </div>
         <div className='col-6'>
-          
+
           <Card>
             <p style={{ wordBreak: 'break-all' }} id='infoPanel'>
               {infoMessage}
