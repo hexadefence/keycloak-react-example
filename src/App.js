@@ -22,7 +22,6 @@ let kc = new Keycloak(initOptions);
 
 kc.init({
   onLoad: 'login-required', // Supported values: 'check-sso' , 'login-required'
-  silentCheckSsoRedirectUri: window.location.origin + "/silent-check-sso.html", 
   checkLoginIframe: true,
   pkceMethod: 'S256'
 }).then((auth) => {
@@ -112,7 +111,12 @@ function App() {
 
             <Button onClick={() => { setInfoMessage(kc.hasRealmRole('admin').toString()) }}
               className="m-1 custom-btn-style"
-              label='is Admin'
+              label='has realm role "Admin"'
+              severity="info" />
+
+            <Button onClick={() => { setInfoMessage(kc.hasResourceRole('test').toString()) }}
+              className="m-1 custom-btn-style"
+              label='has client role "test"'
               severity="info" />
 
           </div>
