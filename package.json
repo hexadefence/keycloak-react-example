@@ -7,7 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
-    "keycloak-js": "^20.0.3",
+    "keycloak-js": "^26.0.1",
     "primeflex": "^3.3.0",
     "primereact": "^9.3.0",
     "react": "^18.2.0",
